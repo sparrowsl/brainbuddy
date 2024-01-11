@@ -1,6 +1,6 @@
 /** @type { import("drizzle-kit").Config } */
 export default {
-	schema: "./src/lib/server/schemas.js",
+	schema: "./src/lib/server/schema.js",
 	driver: "better-sqlite",
 	breakpoints: true,
 	strict: true,
