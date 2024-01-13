@@ -37,6 +37,7 @@
 	"dependencies": {
 		"better-sqlite3": "^9.2.2",
 		"dayjs": "^1.11.10",
-		"drizzle-orm": "^0.29.3"
+		"drizzle-orm": "^0.29.3",
+		"nanoid": "^5.0.4"
 	}
 }
