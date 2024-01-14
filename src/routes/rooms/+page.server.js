@@ -4,9 +4,25 @@ import db from "$lib/server/db.js";
 export async function load() {
 	const rooms = await db.query.roomsTable.findMany({
 		with: {
-			messages: true,
-			topic: true,
-			host: true,
+			// messages: {
+			// 	with: {
+			// 		user: {
+			// 			columns: {
+			// 				username: true,
+			// 			},
+			// 		},
+			// 	},
+			// },
+			topic: {
+				columns: {
+					name: true,
+				},
+			},
+			host: {
+				columns: {
+					username: true,
+				},
+			},
 		},
 	});
 

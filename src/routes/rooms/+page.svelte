@@ -4,13 +4,15 @@
 
 <h1>Rooms</h1>
 <p>back <a href="/">Home</a></p>
+<p><a href="/rooms/new">Create Room</a></p>
 
-<pre>
-{JSON.stringify(data?.rooms, null, 2)}
-</pre>
-
-<div>
+<section>
 	{#each data.rooms as room}
-		<p><a href="/rooms/{room.id}">{room.name}</a></p>
+		<div>
+			<span>@{room.host?.username}</span>
+			<p><a href="/rooms/{room.id}">{room.name}</a></p>
+			<small>{room.topic?.name}</small>
+		</div>
+		<hr />
 	{/each}
-</div>
+</section>

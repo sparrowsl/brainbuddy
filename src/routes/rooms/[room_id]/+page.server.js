@@ -6,6 +6,9 @@ import { eq } from "drizzle-orm";
 export async function load({ params }) {
 	const room = await db.query.roomsTable.findFirst({
 		where: eq(roomsTable.id, params.room_id),
+		with: {
+			messages: true,
+		},
 	});
 
 	return { room };
