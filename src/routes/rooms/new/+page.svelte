@@ -5,7 +5,7 @@
 	export let data;
 </script>
 
-<form action="POST" use:enhance>
+<form method="POST" use:enhance>
 	<fieldset>
 		<label for="topic">
 			<span class="block">Topic:</span>
@@ -17,11 +17,11 @@
 			</select>
 		</label>
 
-		<FormInput label="Name:" />
+		<FormInput label="Name:" name="name" />
 
 		<label for="description">
 			<span class="block">Description:</span>
-			<textarea name="description" id="description" cols="30" class="rounded block"></textarea>
+			<textarea name="description" id="description" cols="30" class="rounded text-sm block"></textarea>
 		</label>
 
 		<button class="block">Submit</button>

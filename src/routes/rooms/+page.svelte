@@ -7,9 +7,9 @@
 <p><a href="/rooms/new">Create Room</a></p>
 
 <section>
-	{#each data.rooms as room}
+	{#each data?.rooms as room}
 		<div>
-			<span>@{room.host?.username}</span>
+			<span>@{room.host?.username || "N/A"}</span>
 			<p><a href="/rooms/{room.id}">{room.name}</a></p>
 			<small>{room.topic?.name}</small>
 		</div>
