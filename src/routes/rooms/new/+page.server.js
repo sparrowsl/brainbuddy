@@ -31,7 +31,7 @@ export const actions = {
 			.returning()
 			.get();
 
-		console.log(room);
+		console.log("created:", room);
 
 		redirect(307, "/rooms");
 	},
