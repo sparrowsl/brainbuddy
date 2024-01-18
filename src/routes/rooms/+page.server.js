@@ -1,9 +1,9 @@
 import db from "$lib/server/db.js";
 import { roomsTable, topicsTable } from "$lib/server/schema.js";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, ilike, sql } from "drizzle-orm";
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load() {
+export async function load({ url }) {
 	const getRooms = async () => {
 		return db.query.roomsTable.findMany({
 			orderBy: desc(roomsTable.created),
@@ -25,8 +25,6 @@ export async function load() {
 	const topics = await db.query.topicsTable.findMany({
 		orderBy: desc(topicsTable.created),
 	});
-
-	// console.log(rooms);
 
 	return {
 		topics,

@@ -14,15 +14,16 @@
 			<h3>Browse Topics</h3>
 			<hr />
 
-			<ul>
+			<ul class="capitalize">
+				<li><a href="?topic=all">all</a></li>
 				{#each data.topics as topic (topic.id)}
-					<li>{topic.name}</li>
+					<li><a href="?topic={topic.name.toLowerCase()}">{topic.name}</a></li>
 				{/each}
 			</ul>
 		</aside>
 
 		<section>
-			{#await data.rooms}
+			{#await data?.rooms}
 				<p>loading rooms...</p>
 			{:then rooms}
 				{#each rooms as room (room.id)}
