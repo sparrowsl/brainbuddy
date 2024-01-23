@@ -1,5 +1,6 @@
 <script>
 	import { enhance } from "$app/forms";
+	import { nanoid } from "nanoid";
 
 	export let data;
 </script>
@@ -15,9 +16,8 @@
 			<hr />
 
 			<ul class="capitalize">
-				<li><a href="?topic=all">all</a></li>
-				{#each data.topics as topic (topic.id)}
-					<li><a href="?topic={topic.name.toLowerCase()}">{topic.name}</a></li>
+				{#each [{ id: nanoid, name: "all" }, ...data.topics] as topic (topic.id)}
+					<li><a href="?topic={topic.name}">{topic.name}</a></li>
 				{/each}
 			</ul>
 		</aside>
@@ -28,9 +28,9 @@
 			{:then rooms}
 				{#each rooms as room (room.id)}
 					<div>
-						<span>
+						<span class="flex gap-2">
 							<a href="/rooms/{room.id}/edit">edit</a>
-							<form action="?/deleteRoom" method="post" class="inline" use:enhance>
+							<form action="?/deleteRoom" method="post" use:enhance>
 								<button value={room.id} name="roomId">delete</button>
 							</form>
 							@{room.host?.username || "N/A"}
@@ -39,6 +39,8 @@
 						<small>{room.topic?.name}</small>
 					</div>
 					<hr />
+				{:else}
+					<p>no room for this topic!!</p>
 				{/each}
 			{/await}
 		</section>

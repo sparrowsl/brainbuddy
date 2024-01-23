@@ -1,25 +1,29 @@
 import db from "$lib/server/db.js";
 import { roomsTable, topicsTable } from "$lib/server/schema.js";
-import { desc, eq, ilike, sql } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url }) {
+	const searchedTopic = url.searchParams.get("topic") || "all";
+
 	const getRooms = async () => {
-		return db.query.roomsTable.findMany({
-			orderBy: desc(roomsTable.created),
-			with: {
-				topic: {
-					columns: {
-						name: true,
+		return db.query.topicsTable
+			.findMany({
+				where: searchedTopic !== "all" ? eq(topicsTable.name, searchedTopic) : () => undefined,
+				columns: {},
+				with: {
+					rooms: {
+						columns: {
+							topicId: false,
+						},
+						with: {
+							host: true,
+							topic: true,
+						},
 					},
 				},
-				host: {
-					columns: {
-						username: true,
-					},
-				},
-			},
-		});
+			})
+			.then((topics) => topics.flatMap((topic) => topic.rooms));
 	};
 
 	const topics = await db.query.topicsTable.findMany({
