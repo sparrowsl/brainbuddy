@@ -1,6 +1,5 @@
 <script>
 	import { enhance } from "$app/forms";
-	import { nanoid } from "nanoid";
 
 	export let data;
 </script>
@@ -26,6 +25,7 @@
 			{#await data?.rooms}
 				<p>loading rooms...</p>
 			{:then rooms}
+				<p>{rooms.length} rooms found!!!</p>
 				{#each rooms as room (room.id)}
 					<div>
 						<span class="flex gap-2">
