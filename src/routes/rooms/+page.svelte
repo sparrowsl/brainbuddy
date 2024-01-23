@@ -16,7 +16,7 @@
 			<hr />
 
 			<ul class="capitalize">
-				{#each [{ id: nanoid, name: "all" }, ...data.topics] as topic (topic.id)}
+				{#each data.topics as topic (topic.id)}
 					<li><a href="?topic={topic.name}">{topic.name}</a></li>
 				{/each}
 			</ul>

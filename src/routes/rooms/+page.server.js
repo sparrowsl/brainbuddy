@@ -1,6 +1,7 @@
 import db from "$lib/server/db.js";
 import { roomsTable, topicsTable } from "$lib/server/schema.js";
 import { desc, eq } from "drizzle-orm";
+import { nanoid } from "nanoid";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url }) {
@@ -9,7 +10,10 @@ export async function load({ url }) {
 	const getRooms = async () => {
 		return db.query.topicsTable
 			.findMany({
-				where: searchedTopic !== "all" ? eq(topicsTable.name, searchedTopic) : () => undefined,
+				where:
+					searchedTopic !== "all"
+						? eq(topicsTable.name, searchedTopic)
+						: () => undefined,
 				columns: {},
 				with: {
 					rooms: {
@@ -28,7 +32,12 @@ export async function load({ url }) {
 
 	const topics = await db.query.topicsTable.findMany({
 		orderBy: desc(topicsTable.created),
+		columns: {
+			name: true,
+			id: true,
+		},
 	});
+	topics.unshift({ id: nanoid(), name: "all" });
 
 	return {
 		topics,
