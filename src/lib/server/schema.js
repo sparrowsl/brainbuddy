@@ -7,7 +7,7 @@ export const usersTable = sqliteTable("users", {
 	id: text("id").primaryKey().notNull().unique().$defaultFn(generateId),
 	name: text("name").notNull(),
 	username: text("username").notNull().unique(),
-	email: text("email"),
+	email: text("email").unique(),
 	password: text("password").notNull(),
 	created: text("created").default(sql`CURRENT_TIMESTAMP`),
 	updated: text("updated").default(sql`CURRENT_TIMESTAMP`),
