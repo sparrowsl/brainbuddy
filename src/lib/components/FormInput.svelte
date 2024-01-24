@@ -8,5 +8,11 @@
 
 <label for={name || id}>
 	<span class="block">{label}</span>
-	<input {type} {value} {name} {id} class="{$$props.class} block text-sm rounded" />
+	<input
+		{type}
+		{value}
+		{name}
+		id={name || id}
+		class="{$$props.class} block text-sm rounded"
+	/>
 </label>
