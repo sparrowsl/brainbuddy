@@ -1,4 +1,4 @@
-<nav>
+<nav class="flex items-center justify-between">
 	<a href="/" class="block text-lg">BrainBuddy</a>
 
 	<ul class="flex gap-5">
