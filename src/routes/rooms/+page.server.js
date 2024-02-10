@@ -4,7 +4,7 @@ import { desc, eq, like } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url }) {
+export async function load({ url, locals }) {
 	const searchedTopic = url.searchParams.get("topic") || "all";
 
 	const getRooms = async () => {
@@ -37,6 +37,7 @@ export async function load({ url }) {
 	topics.unshift({ id: nanoid(), name: "all" });
 
 	return {
+		user: locals.user,
 		topics,
 		rooms: getRooms(),
 	};

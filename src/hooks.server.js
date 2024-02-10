@@ -16,6 +16,8 @@ export async function handle({ event, resolve }) {
 		where: eq(usersTable.id, session),
 		columns: {
 			password: false,
+			created: false,
+			updated: false,
 		},
 	});
 
