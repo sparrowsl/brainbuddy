@@ -7,6 +7,6 @@ export default {
 	out: "./drizzle",
 	verbose: true,
 	dbCredentials: {
-		url: String(import.meta.env.DATABASE_URL),
+		url: String(process.env.DATABASE_URL),
 	},
 };

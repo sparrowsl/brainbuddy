@@ -26,10 +26,8 @@ export const actions = {
 		}
 		// TODO: check hashed password using bcrypt
 
-		// biome-ignore lint/correctness/noUnusedVariables: <explanation>
-		const { password, ...rest } = user;
 		// Set session cookies for the user
-		cookies.set("session", JSON.stringify(rest), {
+		cookies.set("session", user.id, {
 			path: "/",
 			httpOnly: true,
 			maxAge: 24 * 24 * 60 * 7,

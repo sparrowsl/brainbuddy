@@ -13,7 +13,7 @@ export async function handle({ event, resolve }) {
 	// TODO: verify JWT payload / session
 
 	const currentUser = await db.query.usersTable.findFirst({
-		where: eq(usersTable.username, JSON.parse(String(session)).username),
+		where: eq(usersTable.id, session),
 		columns: {
 			password: false,
 		},
