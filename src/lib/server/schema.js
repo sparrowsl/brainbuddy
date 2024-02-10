@@ -43,10 +43,12 @@ export const roomsTable = sqliteTable("rooms", {
 
 export const roomsRelations = relations(roomsTable, ({ many, one }) => ({
 	messages: many(messagesTable),
+
 	topic: one(topicsTable, {
 		fields: [roomsTable.topicId],
 		references: [topicsTable.id],
 	}),
+
 	host: one(usersTable, {
 		fields: [roomsTable.host],
 		references: [usersTable.id],
@@ -71,6 +73,7 @@ export const messagesRelations = relations(messagesTable, ({ one }) => ({
 		fields: [messagesTable.roomId],
 		references: [roomsTable.id],
 	}),
+
 	user: one(usersTable, {
 		fields: [messagesTable.userId],
 		references: [usersTable.id],

@@ -6,7 +6,9 @@ import { eq } from "drizzle-orm";
 export async function handle({ event, resolve }) {
 	const session = event.cookies.get("session");
 
-	if (!session) return await resolve(event);
+	if (!session) {
+		return await resolve(event);
+	}
 
 	// TODO: verify JWT payload / session
 
@@ -17,7 +19,9 @@ export async function handle({ event, resolve }) {
 		},
 	});
 
-	if (currentUser) event.locals.user = currentUser;
+	if (currentUser) {
+		event.locals.user = currentUser;
+	}
 
 	return await resolve(event);
 }

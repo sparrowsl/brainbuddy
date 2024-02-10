@@ -11,20 +11,25 @@ export const actions = {
 		// TODO: validate the form input
 
 		// Check if username exists in database
-		const isValid = await db.query.usersTable.findFirst({
+		const user = await db.query.usersTable.findFirst({
 			where: eq(usersTable.username, String(form.username)),
+			columns: {
+				created: false,
+				updated: false,
+			},
 		});
 
-		if (!isValid) {
+		if (!user) {
 			return {
 				errors: { message: "Invalid Username and Password!!" },
 			};
 		}
 		// TODO: check hashed password using bcrypt
 
+		// biome-ignore lint/correctness/noUnusedVariables: <explanation>
+		const { password, ...rest } = user;
 		// Set session cookies for the user
-		const { password, updated, created, ...user } = isValid;
-		cookies.set("session", JSON.stringify(user), {
+		cookies.set("session", JSON.stringify(rest), {
 			path: "/",
 			httpOnly: true,
 			maxAge: 24 * 24 * 60 * 7,

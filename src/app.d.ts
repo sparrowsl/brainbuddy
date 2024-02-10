@@ -4,6 +4,7 @@ import type { User } from "$lib/types";
 
 // for information about these interfaces
 declare global {
+	// biome-ignore lint/style/noNamespace: <explanation>
 	namespace App {
 		// interface Error {}
 		interface Locals {
