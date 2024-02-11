@@ -6,10 +6,11 @@
 <section>
 	<form action="" method="post" use:enhance>
 		<fieldset class="grid gap-5">
-			<legend>Login</legend>
+			<legend>Register</legend>
+			<FormInput name="name" label="Name" />
 			<FormInput name="username" label="Username" />
 			<FormInput type="password" name="password" label="Password" />
-			<button class="w-fit">Login</button>
+			<button class="w-fit">Register</button>
 		</fieldset>
 	</form>
 </section>
