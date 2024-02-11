@@ -1,13 +1,12 @@
 <script>
 	import { enhance } from "$app/forms";
+	import { page } from "$app/stores";
 
 	export let data;
 </script>
 
 <main>
 	<h1>Rooms</h1>
-	<p>back <a href="/">Home</a></p>
-	<p><a href="/rooms/new">Create Room</a></p>
 
 	<div class="grid gap-5 grid-cols-[max-content_1fr]">
 		<aside class="px-2">
@@ -29,10 +28,12 @@
 				{#each rooms as room (room.id)}
 					<div>
 						<span class="flex gap-2">
-							<a href="/rooms/{room.id}/edit">edit</a>
-							<form action="?/deleteRoom" method="post" use:enhance>
-								<button value={room.id} name="roomId">delete</button>
-							</form>
+							{#if $page.data?.user && $page.data?.user?.id === room.host?.id}
+								<a href="/rooms/{room.id}/edit">edit</a>
+								<form action="?/deleteRoom" method="post" use:enhance>
+									<button value={room.id} name="roomId">delete</button>
+								</form>
+							{/if}
 							@{room.host?.username || "N/A"}
 						</span>
 						<p><a href="/rooms/{room.id}">{room.name}</a></p>
