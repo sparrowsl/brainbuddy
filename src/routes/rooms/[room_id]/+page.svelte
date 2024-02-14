@@ -1,4 +1,6 @@
 <script>
+	import { formatDistance, formatDistanceStrict } from "date-fns";
+
 	export let data;
 </script>
 
@@ -19,7 +21,13 @@
 		<figure class="">
 			<h3>
 				<span>@{comment.user?.username}</span>
-				<span class="text-gray-700 text-sm italic">{comment.created}</span>
+				<span class="text-gray-700 text-sm italic">
+					{formatDistanceStrict(new Date(String(comment.created)), Date.now(), {
+						addSuffix: true,
+						unit: "day",
+					})}
+					{comment.created}
+				</span>
 			</h3>
 			<figcaption>
 				<p>{comment.body}</p>
