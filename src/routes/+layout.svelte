@@ -1,6 +1,5 @@
 <script>
-	// import "@unocss/reset/tailwind.css";
-	import "uno.css";
+	import "../app.css";
 	import Navbar from "./Navbar.svelte";
 </script>
 
