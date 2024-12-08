@@ -1,4 +1,4 @@
-import db from "$lib/server/db.js";
+import { db } from "$lib/server/db.js";
 import { roomsTable } from "$lib/server/schema.js";
 import { redirect } from "@sveltejs/kit";
 import dayjs from "dayjs";

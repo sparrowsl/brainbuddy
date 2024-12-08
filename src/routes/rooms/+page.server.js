@@ -1,4 +1,4 @@
-import db from "$lib/server/db.js";
+import { db } from "$lib/server/db.js";
 import { roomsTable, topicsTable } from "$lib/server/schema.js";
 import { desc, eq, like } from "drizzle-orm";
 import { nanoid } from "nanoid";
@@ -10,7 +10,10 @@ export async function load({ url, locals }) {
 	const getRooms = async () => {
 		return db.query.topicsTable
 			.findMany({
-				where: searchedTopic !== "all" ? like(topicsTable.name, `%${searchedTopic}%`) : undefined,
+				where:
+					searchedTopic !== "all"
+						? like(topicsTable.name, `%${searchedTopic}%`)
+						: undefined,
 				columns: {},
 				with: {
 					rooms: {

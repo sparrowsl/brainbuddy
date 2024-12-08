@@ -1,16 +1,17 @@
 import { relations, sql } from "drizzle-orm";
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
-
-const generateId = () => crypto.randomUUID().replaceAll("-", "_");
+import { nanoid } from "nanoid";
 
 export const usersTable = sqliteTable("users", {
-	id: text("id").primaryKey().notNull().unique().$defaultFn(generateId),
-	name: text("name").notNull(),
-	username: text("username").notNull().unique(),
-	email: text("email").unique(),
-	password: text("password").notNull(),
-	created: text("created").default(sql`CURRENT_TIMESTAMP`),
-	updated: text("updated").default(sql`CURRENT_TIMESTAMP`),
+	id: text().primaryKey().unique().$defaultFn(nanoid),
+	name: text().notNull(),
+	username: text().notNull().unique(),
+	email: text().unique(),
+	password: text().notNull(),
+	created: text()
+		.notNull()
+		.default(sql`CURRENT_TIMESTAMP`),
+	updated: text().default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const usersRelations = relations(usersTable, ({ many }) => ({
@@ -18,10 +19,12 @@ export const usersRelations = relations(usersTable, ({ many }) => ({
 }));
 
 export const topicsTable = sqliteTable("topics", {
-	id: text("id").primaryKey().notNull().unique().$defaultFn(generateId),
-	name: text("name").notNull(),
-	created: text("created").default(sql`CURRENT_TIMESTAMP`),
-	updated: text("updated").default(sql`CURRENT_TIMESTAMP`),
+	id: text().primaryKey().unique().$defaultFn(nanoid),
+	name: text().notNull(),
+	created: text()
+		.notNull()
+		.default(sql`CURRENT_TIMESTAMP`),
+	updated: text().default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const topicsRelations = relations(topicsTable, ({ many }) => ({
@@ -29,13 +32,13 @@ export const topicsRelations = relations(topicsTable, ({ many }) => ({
 }));
 
 export const roomsTable = sqliteTable("rooms", {
-	id: text("id").primaryKey().notNull().unique().$defaultFn(generateId),
-	name: text("name").notNull(),
-	description: text("description"),
-	created: text("created").default(sql`CURRENT_TIMESTAMP`),
-	updated: text("updated").default(sql`CURRENT_TIMESTAMP`),
+	id: text().primaryKey().unique().$defaultFn(nanoid),
+	name: text().notNull(),
+	description: text(),
+	created: text().default(sql`CURRENT_TIMESTAMP`),
+	updated: text().default(sql`CURRENT_TIMESTAMP`),
 	// participants:text("participants")
-	host: text("host").references(() => usersTable.id, { onDelete: "set null" }),
+	host: text().references(() => usersTable.id, { onDelete: "set null" }),
 	topicId: text("topic_id").references(() => topicsTable.id, {
 		onDelete: "set null",
 	}),
@@ -56,10 +59,10 @@ export const roomsRelations = relations(roomsTable, ({ many, one }) => ({
 }));
 
 export const messagesTable = sqliteTable("messages", {
-	id: text("id").primaryKey().notNull().unique().$defaultFn(generateId),
-	body: text("body").notNull(),
-	created: text("created").default(sql`CURRENT_TIMESTAMP`),
-	updated: text("updated").default(sql`CURRENT_TIMESTAMP`),
+	id: text().primaryKey().notNull().unique().$defaultFn(nanoid),
+	body: text().notNull(),
+	created: text().default(sql`CURRENT_TIMESTAMP`),
+	updated: text().default(sql`CURRENT_TIMESTAMP`),
 	roomId: text("room_id").references(() => roomsTable.id, {
 		onDelete: "cascade",
 	}),

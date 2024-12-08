@@ -1,4 +1,4 @@
-import db from "$lib/server/db.js";
+import { db } from "$lib/server/db.js";
 import { messagesTable, roomsTable } from "$lib/server/schema.js";
 import { desc, eq } from "drizzle-orm";
 

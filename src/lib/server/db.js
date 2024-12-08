@@ -1,9 +1,8 @@
-import { DATABASE_URL } from "$env/static/private";
-import Database from "better-sqlite3";
 import { drizzle } from "drizzle-orm/better-sqlite3";
+
 import * as schema from "./schema.js";
+import { config } from "./config.js";
 
-const sqlite = new Database(DATABASE_URL);
-const db = drizzle(sqlite, { schema });
+const conn = drizzle(config.DATABASE_URL, { schema, casing: "snake_case" });
 
-export default db;
+export const db = conn;

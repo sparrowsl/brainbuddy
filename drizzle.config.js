@@ -1,12 +1,17 @@
+import { defineConfig } from "drizzle-kit";
+
+import { config } from "./src/lib/server/config.js";
+
 /** @type { import("drizzle-kit").Config } */
-export default {
+export default defineConfig({
 	schema: "./src/lib/server/schema.js",
-	driver: "better-sqlite",
+	dialect: "sqlite",
 	breakpoints: true,
 	strict: true,
 	out: "./drizzle",
 	verbose: true,
+	casing: "snake_case",
 	dbCredentials: {
-		url: String(process.env.DATABASE_URL),
+		url: config.DATABASE_URL,
 	},
-};
+});
