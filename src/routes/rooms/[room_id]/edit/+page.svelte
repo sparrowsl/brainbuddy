@@ -1,8 +1,8 @@
 <script>
-	import { enhance } from "$app/forms";
-	import FormInput from "$lib/components/FormInput.svelte";
+import { enhance } from "$app/forms";
+import FormInput from "$lib/components/FormInput.svelte";
 
-	export let data;
+export let data;
 </script>
 
 <form method="POST" use:enhance>

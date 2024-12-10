@@ -1,5 +1,5 @@
 <script>
-	export let open = false;
+export const open = false;
 </script>
 
 <dialog {open} class={$$props.class} on:close>

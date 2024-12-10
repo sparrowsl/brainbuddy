@@ -4,7 +4,6 @@ import { desc, eq } from "drizzle-orm";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
-	// biome-ignore lint/nursery/useAwait: <explanation>
 	const getRoomComments = async () => {
 		return db.query.messagesTable.findMany({
 			where: eq(messagesTable.roomId, params.room_id),

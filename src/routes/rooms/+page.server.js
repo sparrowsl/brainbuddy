@@ -10,10 +10,7 @@ export async function load({ url, locals }) {
 	const getRooms = async () => {
 		return db.query.topicsTable
 			.findMany({
-				where:
-					searchedTopic !== "all"
-						? like(topicsTable.name, `%${searchedTopic}%`)
-						: undefined,
+				where: searchedTopic !== "all" ? like(topicsTable.name, `%${searchedTopic}%`) : undefined,
 				columns: {},
 				with: {
 					rooms: {

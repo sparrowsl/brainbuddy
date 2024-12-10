@@ -1,9 +1,9 @@
 <script>
-	export let name = "";
-	export let id = "";
-	export let label = "";
-	export let type = "text";
-	export let value = "";
+export const name = "";
+export const id = "";
+export const label = "";
+export const type = "text";
+export const value = "";
 </script>
 
 <label for={name || id}>

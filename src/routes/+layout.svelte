@@ -1,7 +1,7 @@
 <script>
-	import { enhance } from "$app/forms";
-	import { page } from "$app/stores";
-	import "../app.css";
+import { enhance } from "$app/forms";
+import { page } from "$app/stores";
+import "../app.css";
 </script>
 
 <nav class="flex items-center justify-between py-5 container mx-auto">

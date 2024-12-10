@@ -1,6 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
+  "id": "1cefaab3-8c3d-440f-82ad-416ef8f026ad",
+  "prevId": "12082461-12b4-40b5-8893-24f8b1ee6b6d",
   "tables": {
     "messages": {
       "name": "messages",
@@ -32,8 +34,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false,
-          "default": "CURRENT_TIMESTAMP"
+          "autoincrement": false
         },
         "room_id": {
           "name": "room_id",
@@ -63,28 +64,28 @@
         "messages_room_id_rooms_id_fk": {
           "name": "messages_room_id_rooms_id_fk",
           "tableFrom": "messages",
+          "tableTo": "rooms",
           "columnsFrom": [
             "room_id"
           ],
-          "tableTo": "rooms",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         },
         "messages_user_id_users_id_fk": {
           "name": "messages_user_id_users_id_fk",
           "tableFrom": "messages",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -128,8 +129,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false,
-          "default": "CURRENT_TIMESTAMP"
+          "autoincrement": false
         },
         "host": {
           "name": "host",
@@ -159,28 +159,28 @@
         "rooms_host_users_id_fk": {
           "name": "rooms_host_users_id_fk",
           "tableFrom": "rooms",
+          "tableTo": "users",
           "columnsFrom": [
             "host"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "set null"
+          "onDelete": "set null",
+          "onUpdate": "no action"
         },
         "rooms_topic_id_topics_id_fk": {
           "name": "rooms_topic_id_topics_id_fk",
           "tableFrom": "rooms",
+          "tableTo": "topics",
           "columnsFrom": [
             "topic_id"
           ],
-          "tableTo": "topics",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "set null"
+          "onDelete": "set null",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -208,7 +208,7 @@
           "name": "created",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": "CURRENT_TIMESTAMP"
         },
@@ -217,8 +217,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false,
-          "default": "CURRENT_TIMESTAMP"
+          "autoincrement": false
         }
       },
       "indexes": {
@@ -277,7 +276,7 @@
           "name": "created",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": "CURRENT_TIMESTAMP"
         },
@@ -286,8 +285,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false,
-          "default": "CURRENT_TIMESTAMP"
+          "autoincrement": false
         }
       },
       "indexes": {
@@ -319,12 +317,14 @@
       "checkConstraints": {}
     }
   },
+  "views": {},
   "enums": {},
   "_meta": {
+    "schemas": {},
     "tables": {},
     "columns": {}
   },
-  "id": "12082461-12b4-40b5-8893-24f8b1ee6b6d",
-  "prevId": "3c901628-be95-4752-9130-03957bd9b567",
-  "views": {}
+  "internal": {
+    "indexes": {}
+  }
 }

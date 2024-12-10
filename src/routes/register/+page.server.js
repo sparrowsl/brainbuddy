@@ -13,10 +13,9 @@ export function load({ locals }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
 	default: async ({ request, cookies }) => {
-		const form =
-			/** @type {{name:string, username:string, password:string}} */ (
-				Object.fromEntries(await request.formData())
-			);
+		const form = /** @type {{name:string, username:string, password:string}} */ (
+			Object.fromEntries(await request.formData())
+		);
 
 		// TODO: validate the form input
 

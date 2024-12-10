@@ -15,6 +15,20 @@
       "when": 1706083560666,
       "tag": "0001_wakeful_grim_reaper",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1733818180558,
+      "tag": "0002_misty_proteus",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1733819138890,
+      "tag": "0003_closed_carnage",
+      "breakpoints": true
     }
   ]
 }

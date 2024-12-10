@@ -1,6 +1,6 @@
 <script>
-	import { enhance } from "$app/forms";
-	import FormInput from "$lib/components/FormInput.svelte";
+import { enhance } from "$app/forms";
+import FormInput from "$lib/components/FormInput.svelte";
 </script>
 
 <section>

@@ -1,8 +1,8 @@
 import "dotenv/config";
 
-export const config = (function () {
+export const config = (() => {
 	// TODO: add zod validation
-	if (String(process?.env?.DATABASE_URL).trim() == "") {
+	if (String(process?.env?.DATABASE_URL).trim() === "") {
 		throw Error("DATABASE_URL not found");
 	}
 

@@ -51,20 +51,7 @@
 				"useSimplifiedLogicExpression": "warn"
 			},
 			"nursery": {
-				"recommended": true,
-				"noDuplicateJsonKeys": "error",
-				"noEmptyBlockStatements": "error",
-				"noUnusedImports": "warn",
-				"noUnusedPrivateClassMembers": "error",
-				"noUselessLoneBlockStatements": "error",
-				"useAwait": "warn",
-				"useImportRestrictions": "warn",
-				"noGlobalAssign": "error",
-				"noGlobalEval": "error",
-				"noInvalidUseBeforeDeclaration": "error",
-				"noUselessTernary": "warn",
-				"useForOf": "warn",
-				"useFilenamingConvention": "off"
+				"recommended": true
 			}
 		}
 	}

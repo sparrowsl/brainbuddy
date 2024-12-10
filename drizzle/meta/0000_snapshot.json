@@ -1,8 +1,6 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
-  "id": "3c901628-be95-4752-9130-03957bd9b567",
-  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "messages": {
       "name": "messages",
@@ -65,32 +63,33 @@
         "messages_room_id_rooms_id_fk": {
           "name": "messages_room_id_rooms_id_fk",
           "tableFrom": "messages",
-          "tableTo": "rooms",
           "columnsFrom": [
             "room_id"
           ],
+          "tableTo": "rooms",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "messages_user_id_users_id_fk": {
           "name": "messages_user_id_users_id_fk",
           "tableFrom": "messages",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "rooms": {
       "name": "rooms",
@@ -160,32 +159,33 @@
         "rooms_host_users_id_fk": {
           "name": "rooms_host_users_id_fk",
           "tableFrom": "rooms",
-          "tableTo": "users",
           "columnsFrom": [
             "host"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "set null"
         },
         "rooms_topic_id_topics_id_fk": {
           "name": "rooms_topic_id_topics_id_fk",
           "tableFrom": "rooms",
-          "tableTo": "topics",
           "columnsFrom": [
             "topic_id"
           ],
+          "tableTo": "topics",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "set null",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "set null"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "topics": {
       "name": "topics",
@@ -232,7 +232,8 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "users": {
       "name": "users",
@@ -307,13 +308,16 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     }
   },
   "enums": {},
   "_meta": {
-    "schemas": {},
     "tables": {},
     "columns": {}
-  }
+  },
+  "id": "3c901628-be95-4752-9130-03957bd9b567",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "views": {}
 }

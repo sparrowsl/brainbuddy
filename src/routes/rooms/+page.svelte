@@ -1,8 +1,8 @@
 <script>
-	import { enhance } from "$app/forms";
-	import { page } from "$app/stores";
+import { enhance } from "$app/forms";
+import { page } from "$app/stores";
 
-	export let data;
+export let data;
 </script>
 
 <main>
