@@ -8,8 +8,9 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--color-accent: "#6A42C2";
-	--color-accent-thick: "#563A9C";
+	--color-accent: #6a42c2;
+	--color-accent-thick: #563a9c;
+	--color-purple: #7e1891;
 
 	--font-ptsans: "PT Sans", Arial, sans-serif;
 	--font-raleway: "Raleway", Arial, sans-serif;

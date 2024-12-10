@@ -10,10 +10,12 @@ export const usersTable = sqliteTable(
 		username: text().notNull().unique(),
 		email: text().unique(),
 		password: text().notNull(),
-		created: text().notNull().default(sql`CURRENT_TIMESTAMP`),
-		updated: text().$onUpdate(() => sql`now()`),
+		created: text()
+			.notNull()
+			.default(sql`CURRENT_TIMESTAMP`),
+		updated: text().$onUpdate(() => sql`CURRENT_TIMESTAMP`),
 	},
-	(t) => [index("email_idx").on(t.email), index("username_idx").on(t.username)],
+	(t) => [index("email_idx").on(t.email), index("username_idx").on(t.username)]
 );
 
 export const usersRelations = relations(usersTable, ({ many }) => ({
@@ -23,8 +25,10 @@ export const usersRelations = relations(usersTable, ({ many }) => ({
 export const topicsTable = sqliteTable("topics", {
 	id: text().primaryKey().unique().$defaultFn(nanoid),
 	name: text().notNull(),
-	created: text().notNull().default(sql`CURRENT_TIMESTAMP`),
-	updated: text().$onUpdate(() => sql`now()`),
+	created: text()
+		.notNull()
+		.default(sql`CURRENT_TIMESTAMP`),
+	updated: text().$onUpdate(() => sql`CURRENT_TIMESTAMP`),
 });
 
 export const topicsRelations = relations(topicsTable, ({ many }) => ({
@@ -38,14 +42,14 @@ export const roomsTable = sqliteTable(
 		name: text().notNull(),
 		description: text(),
 		created: text().default(sql`CURRENT_TIMESTAMP`),
-		updated: text().$onUpdate(() => sql`now()`),
+		updated: text().$onUpdate(() => sql`CURRENT_TIMESTAMP`),
 		// participants:text("participants")
 		host: text().references(() => usersTable.id, { onDelete: "set null" }),
 		topicId: text("topic_id").references(() => topicsTable.id, {
 			onDelete: "set null",
 		}),
 	},
-	(t) => [index("host_idx").on(t.host)],
+	(t) => [index("host_idx").on(t.host)]
 );
 
 export const roomsRelations = relations(roomsTable, ({ many, one }) => ({
@@ -68,7 +72,7 @@ export const messagesTable = sqliteTable(
 		id: text().primaryKey().unique().$defaultFn(nanoid),
 		body: text().notNull(),
 		created: text().default(sql`CURRENT_TIMESTAMP`),
-		updated: text().$onUpdate(() => sql`now()`),
+		updated: text().$onUpdate(() => sql`CURRENT_TIMESTAMP`),
 		roomId: text("room_id").references(() => roomsTable.id, {
 			onDelete: "cascade",
 		}),
@@ -76,7 +80,7 @@ export const messagesTable = sqliteTable(
 			onDelete: "cascade",
 		}),
 	},
-	(t) => [index("room_id_idx").on(t.roomId)],
+	(t) => [index("room_id_idx").on(t.roomId)]
 );
 
 export const messagesRelations = relations(messagesTable, ({ one }) => ({

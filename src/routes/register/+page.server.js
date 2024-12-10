@@ -1,6 +1,6 @@
 import { db } from "$lib/server/db.js";
 import { usersTable } from "$lib/server/schema.js";
-import { redirect } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import { eq } from "drizzle-orm";
 
 /** @type {import('./$types').PageServerLoad} */
@@ -13,38 +13,39 @@ export function load({ locals }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
 	default: async ({ request, cookies }) => {
-		const form = /** @type {{name:string, username:string, password:string}} */ (
+		const form = /** @type {import("$lib/types").User} */ (
 			Object.fromEntries(await request.formData())
 		);
 
 		// TODO: validate the form input
 
 		// Check if username exists in database
-		const user = await db.query.usersTable.findFirst({
-			where: eq(usersTable.username, String(form.username)),
+		const found = await db.query.usersTable.findFirst({
+			where: eq(usersTable.username, form.username),
+			columns: { id: true },
 		});
 
-		if (user) {
-			return {
-				errors: { message: "Invalid Username and Password!!" },
-			};
+		if (found) {
+			console.log({ found });
+			return fail(400, { error: "username already taken!!" });
 		}
 
 		// TODO: hashed password using bcrypt before saving
 		// Save the new user data in the database
-		const newUser = db
+		const user = db
 			.insert(usersTable)
 			.values({
 				name: form.name,
 				username: form.username,
 				password: form.password,
 			})
-			.returning()
+			.returning({ id: usersTable.id })
 			.get();
 
 		// Set session cookies for the user
-		cookies.set("session", newUser.id, {
+		cookies.set("session", user.id, {
 			path: "/",
+			sameSite: "strict",
 			httpOnly: true,
 			maxAge: 24 * 24 * 60 * 7,
 		});
