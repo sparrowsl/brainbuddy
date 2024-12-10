@@ -12,17 +12,18 @@ export async function handle({ event, resolve }) {
 
 	// TODO: verify JWT payload / session
 
-	const currentUser = await db.query.usersTable.findFirst({
+	const user = await db.query.usersTable.findFirst({
 		where: eq(usersTable.id, session),
 		columns: {
 			password: false,
+			email: false,
 			created: false,
 			updated: false,
 		},
 	});
 
-	if (currentUser) {
-		event.locals.user = currentUser;
+	if (user) {
+		event.locals.user = user;
 	}
 
 	return await resolve(event);

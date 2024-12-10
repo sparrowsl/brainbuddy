@@ -4,7 +4,11 @@ import { redirect } from "@sveltejs/kit";
 import { eq } from "drizzle-orm";
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ params, locals }) {
+	if (!locals.user) {
+		redirect(302, `/rooms/${params.room_id}`);
+	}
+
 	const getRoom = () => {
 		return db.query.roomsTable.findFirst({
 			where: eq(roomsTable.id, params.room_id),
@@ -14,6 +18,10 @@ export async function load({ params }) {
 	const getTopics = () => db.query.topicsTable.findMany();
 
 	const [room, topics] = await Promise.all([getRoom(), getTopics()]);
+
+	if (room?.host !== locals.user.id) {
+		redirect(307, `/rooms/${params.room_id}`);
+	}
 
 	return {
 		room,

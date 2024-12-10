@@ -1,17 +1,18 @@
 import { db } from "$lib/server/db.js";
 import { roomsTable, topicsTable } from "$lib/server/schema.js";
+import { fail } from "@sveltejs/kit";
 import { desc, eq, like } from "drizzle-orm";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url, locals }) {
-	const searchedTopic = url.searchParams.get("topic") || "all";
+	const selectedTopic = url.searchParams.get("topic") || "all";
 
 	const getRooms = async () => {
 		return db.query.topicsTable
 			.findMany({
 				where:
-					searchedTopic !== "all"
-						? like(topicsTable.name, `%${searchedTopic}%`)
+					selectedTopic !== "all"
+						? like(topicsTable.name, `%${selectedTopic}%`)
 						: undefined,
 				columns: {},
 				with: {
@@ -46,11 +47,16 @@ export async function load({ url, locals }) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-	deleteRoom: async ({ request }) => {
-		const { id } = /** @type {import("$lib/types").Room} */ (
-			Object.fromEntries(await request.formData())
-		);
+	deleteRoom: async ({ request, locals }) => {
+		const { id, hostId } =
+			/** @type {import("$lib/types").Room & {hostId: string}} */ (
+				Object.fromEntries(await request.formData())
+			);
 
-		await db.delete(roomsTable).where(eq(roomsTable.id, id));
+		if (locals.user.id !== hostId) {
+			return fail(403, { error: "You are not authorized to delete this room" });
+		}
+
+		db.delete(roomsTable).where(eq(roomsTable.id, id)).execute();
 	},
 };

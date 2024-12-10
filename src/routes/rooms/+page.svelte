@@ -32,19 +32,29 @@
 				</p>
 				{#each rooms as room (room.id)}
 					<div>
-						<span class="flex gap-2">
+						<span class="flex gap-2 items-center">
 							{#if $page.data?.user && $page.data?.user?.id === room.host?.id}
-								<a href="/rooms/{room.id}/edit">edit</a>
+								<a href="/rooms/{room.id}/edit" class="text-sm">edit</a>
 								<form action="?/deleteRoom" method="post" use:enhance>
-									<button value={room.id} name="id">delete</button>
+									<input type="hidden" name="hostId" value={room.host?.id} />
+									<button
+										value={room.id}
+										name="id"
+										class="cursor-pointer text-red-400 text-sm"
+									>
+										delete
+									</button>
 								</form>
 							{/if}
 							@{room.host?.username || "N/A"}
 						</span>
-						<a href="/rooms/{room.id}" class="block text-accent">{room.name}</a>
+
+						<a href="/rooms/{room.id}" class="block text-accent text-lg">
+							{room.name}
+						</a>
 						<small>{room.topic?.name}</small>
 					</div>
-					<hr />
+					<hr class="mb-5" />
 				{:else}
 					<p>
 						no rooms {currentTopic ? `for ${currentTopic}` : "created yet!!"}!!

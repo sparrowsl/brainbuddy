@@ -26,8 +26,7 @@ export const actions = {
 		});
 
 		if (found) {
-			console.log({ found });
-			return fail(400, { error: "username already taken!!" });
+			return fail(401, { error: "username already taken!!" });
 		}
 
 		// TODO: hashed password using bcrypt before saving

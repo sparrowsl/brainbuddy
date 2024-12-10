@@ -1,11 +1,11 @@
 <script>
-import { enhance } from "$app/forms";
+	import { enhance } from "$app/forms";
 
-export let data;
+	export let data;
 </script>
 
 <form method="POST" use:enhance>
-	<fieldset>
+	<fieldset class="grid gap-5 *:block">
 		<div class="*:block">
 			<label for="topicId">Topic:</label>
 			<select name="topicId" id="topicId" class="rounded text-sm">
@@ -26,11 +26,10 @@ export let data;
 			<textarea
 				name="description"
 				id="description"
-				cols="30"
-				class="rounded text-sm"
+				class="rounded text-sm min-h-20"
 			></textarea>
 		</div>
 
-		<button type="submit" class="block">Submit</button>
+		<button type="submit" class="w-fit cursor-pointer">Submit</button>
 	</fieldset>
 </form>

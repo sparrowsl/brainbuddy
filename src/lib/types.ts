@@ -1,11 +1,11 @@
 export type User = {
 	id?: string;
-	name: string | null;
+	name: string;
 	username: string;
-	email: string | null;
+	email?: string;
 	password?: string;
-	created?: Date | string | null;
-	updated?: Date | string | null;
+	created?: Date | string;
+	updated?: Date | string;
 };
 
 export type Room = {

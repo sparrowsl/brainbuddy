@@ -29,8 +29,7 @@ export const actions = {
 		});
 
 		if (!user) {
-			console.log({ user });
-			return fail(400, { error: "invalid username and password!!" });
+			return fail(401, { error: "invalid username and password!!" });
 		}
 		// TODO: check hashed password using bcrypt
 

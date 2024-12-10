@@ -3,7 +3,11 @@ import { roomsTable } from "$lib/server/schema.js";
 import { redirect } from "@sveltejs/kit";
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load() {
+export async function load({ locals }) {
+	if (!locals.user) {
+		redirect(307, "/rooms");
+	}
+
 	const topics = await db.query.topicsTable.findMany({
 		columns: {
 			id: true,
@@ -16,11 +20,10 @@ export async function load() {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
 		const form = /** @type {import("$lib/types").Room} */ (
 			Object.fromEntries(await request.formData())
 		);
-		// console.log(form);
 		// TODO: check for correct form data using zod
 
 		const room = db
@@ -28,13 +31,12 @@ export const actions = {
 			.values({
 				name: form.name,
 				topicId: form.topicId,
+				host: locals.user.id,
 				description: form.description,
 			})
 			.returning()
 			.get();
 
-		console.log("created:", room);
-
-		redirect(307, "/rooms");
+		redirect(307, `/rooms/${room.id}`);
 	},
 };
