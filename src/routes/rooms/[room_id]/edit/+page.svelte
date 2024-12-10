@@ -1,34 +1,43 @@
 <script>
-import { enhance } from "$app/forms";
-import FormInput from "$lib/components/FormInput.svelte";
+	import { enhance } from "$app/forms";
 
-export let data;
+	export let data;
 </script>
 
 <form method="POST" use:enhance>
-	<fieldset>
-		<label for="topic">
-			<span class="block">Topic:</span>
-			<select name="topic" id="topic" class="rounded text-sm block">
+	<fieldset class="grid gap-5 *:block">
+		<div class="*:block">
+			<label for="topicId">Topic:</label>
+			<select name="topicId" id="topicId" class="rounded text-sm">
 				{#each data?.topics as topic (topic.id)}
-					<option value={topic.id} selected={topic.id === data.room?.topicId}>{topic.name}</option>
+					<option value={topic.id} selected={topic.id === data.room?.topicId}>
+						{topic.name}
+					</option>
 				{/each}
 			</select>
-		</label>
+		</div>
 
-		<FormInput label="Name:" name="name" value={data.room?.name} />
+		<div class="*:block">
+			<label for="name">Name</label>
+			<input
+				type="text"
+				id="name"
+				name="name"
+				class="rounded text-sm"
+				value={data.room?.name}
+			/>
+		</div>
 
-		<label for="description">
-			<span class="block">Description:</span>
+		<div class="*:block">
+			<label for="description">Description</label>
 			<textarea
 				name="description"
 				id="description"
 				value={data.room?.description}
-				cols="30"
-				class="rounded text-sm block"
+				class="rounded text-sm min-h-20"
 			></textarea>
-		</label>
+		</div>
 
-		<button class="block">Submit</button>
+		<button type="submit" class="w-fit cursor-pointer text-sm">Submit</button>
 	</fieldset>
 </form>

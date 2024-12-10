@@ -4,9 +4,10 @@ import { desc, eq } from "drizzle-orm";
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
-	const getRoomComments = async () => {
+	/** @param {string} roomId */
+	const getRoomComments = async (roomId) => {
 		return db.query.messagesTable.findMany({
-			where: eq(messagesTable.roomId, params.room_id),
+			where: eq(messagesTable.roomId, roomId),
 			orderBy: desc(messagesTable.created),
 			with: {
 				user: {
@@ -26,20 +27,15 @@ export async function load({ params }) {
 				columns: {
 					id: true,
 					username: true,
-					email: true,
+					// email: true,
 				},
 			},
-			topic: {
-				columns: {
-					id: true,
-					name: true,
-				},
-			},
+			topic: true,
 		},
 	});
 
 	return {
 		room,
-		comments: getRoomComments(),
+		comments: getRoomComments(params.room_id),
 	};
 }

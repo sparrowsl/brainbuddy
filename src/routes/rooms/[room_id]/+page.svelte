@@ -1,7 +1,7 @@
 <script>
-import { formatDistance, formatDistanceStrict } from "date-fns";
+	import { formatDistanceStrict } from "date-fns";
 
-export let data;
+	export let data;
 </script>
 
 <h1>Room: {data.room?.name}</h1>
