@@ -49,8 +49,10 @@ export async function load({ url, locals }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
 	deleteRoom: async ({ request }) => {
-		const { roomId } = Object.fromEntries(await request.formData());
+		const { id } = /** @type {import("$lib/types").Room} */ (
+			Object.fromEntries(await request.formData())
+		);
 
-		await db.delete(roomsTable).where(eq(roomsTable.id, String(roomId)));
+		await db.delete(roomsTable).where(eq(roomsTable.id, id));
 	},
 };

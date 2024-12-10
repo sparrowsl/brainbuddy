@@ -31,7 +31,7 @@
 							{#if $page.data?.user && $page.data?.user?.id === room.host?.id}
 								<a href="/rooms/{room.id}/edit">edit</a>
 								<form action="?/deleteRoom" method="post" use:enhance>
-									<button value={room.id} name="roomId">delete</button>
+									<button value={room.id} name="id">delete</button>
 								</form>
 							{/if}
 							@{room.host?.username || "N/A"}
