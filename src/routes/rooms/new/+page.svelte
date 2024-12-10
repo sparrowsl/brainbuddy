@@ -1,29 +1,36 @@
 <script>
 	import { enhance } from "$app/forms";
-	import FormInput from "$lib/components/FormInput.svelte";
 
 	export let data;
 </script>
 
 <form method="POST" use:enhance>
 	<fieldset>
-		<label for="topic">
-			<span class="block">Topic:</span>
-			<select name="topic" id="topic" class="rounded text-sm block">
+		<div class="*:block">
+			<label for="topicId">Topic:</label>
+			<select name="topicId" id="topicId" class="rounded text-sm">
 				<option value="" disabled selected>-------</option>
 				{#each data.topics as topic (topic.id)}
 					<option value={topic.id}>{topic.name}</option>
 				{/each}
 			</select>
-		</label>
+		</div>
 
-		<FormInput label="Name:" name="name" />
+		<div class="*:block">
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" class="text-sm rounded" />
+		</div>
 
-		<label for="description">
-			<span class="block">Description:</span>
-			<textarea name="description" id="description" cols="30" class="rounded text-sm block"></textarea>
-		</label>
+		<div class="*:block">
+			<label for="description">Description</label>
+			<textarea
+				name="description"
+				id="description"
+				cols="30"
+				class="rounded text-sm"
+			></textarea>
+		</div>
 
-		<button class="block">Submit</button>
+		<button type="submit" class="block">Submit</button>
 	</fieldset>
 </form>

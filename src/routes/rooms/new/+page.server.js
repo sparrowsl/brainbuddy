@@ -17,16 +17,18 @@ export async function load() {
 /** @type {import('./$types').Actions} */
 export const actions = {
 	default: async ({ request }) => {
-		const form = Object.fromEntries(await request.formData());
+		const form = /** @type {import("$lib/types").Room} */ (
+			Object.fromEntries(await request.formData())
+		);
 		// console.log(form);
 		// TODO: check for correct form data using zod
 
 		const room = db
 			.insert(roomsTable)
 			.values({
-				name: String(form.name),
-				topicId: String(form.topic),
-				description: String(form.description),
+				name: form.name,
+				topicId: form.topicId,
+				description: form.description,
 			})
 			.returning()
 			.get();

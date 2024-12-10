@@ -16,6 +16,7 @@ export type Room = {
 	updated?: Date | string;
 	// participants:string
 	host?: User;
+
 	topicId?: string;
 };
 

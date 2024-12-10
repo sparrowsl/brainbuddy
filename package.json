@@ -21,19 +21,19 @@
 		"@melt-ui/pp": "^0.3.2",
 		"@melt-ui/svelte": "^0.86.2",
 		"@sveltejs/adapter-node": "^5.2.9",
-		"@sveltejs/kit": "^2.9.0",
+		"@sveltejs/kit": "^2.9.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.1",
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "^4.0.0-beta.6",
-		"drizzle-kit": "^0.29.1",
-		"svelte": "^5.8.1",
+		"drizzle-kit": "^0.30.0",
+		"svelte": "^5.10.0",
 		"svelte-check": "^4.1.1",
 		"tailwindcss": "^4.0.0-beta.6",
 		"typescript": "^5.7.2",
 		"vite": "^6.0.3",
 		"vitest": "^2.1.8",
-		"zod": "^3.23.8"
+		"zod": "^3.24.0"
 	},
 	"type": "module",
 	"dependencies": {
@@ -41,7 +41,7 @@
 		"date-fns": "^4.1.0",
 		"dayjs": "^1.11.13",
 		"dotenv": "^16.4.7",
-		"drizzle-orm": "^0.37.0",
+		"drizzle-orm": "^0.38.0",
 		"nanoid": "^5.0.9"
 	}
 }
