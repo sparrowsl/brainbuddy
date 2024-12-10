@@ -1,7 +1,7 @@
 <script>
 	import { formatDistanceStrict } from "date-fns";
 
-	export let data;
+	const { data } = $props();
 </script>
 
 <h1>Room: {data.room?.name}</h1>

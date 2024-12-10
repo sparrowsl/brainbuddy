@@ -2,6 +2,8 @@
 	import { enhance } from "$app/forms";
 	import { page } from "$app/stores";
 	import "../app.css";
+
+	const { children } = $props();
 </script>
 
 <nav class="flex items-center justify-between py-5 container mx-auto">
@@ -29,5 +31,5 @@
 </nav>
 
 <main class="container mx-auto">
-	<slot />
+	{@render children?.()}
 </main>

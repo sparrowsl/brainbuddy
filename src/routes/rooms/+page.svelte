@@ -2,9 +2,9 @@
 	import { enhance } from "$app/forms";
 	import { page } from "$app/stores";
 
-	export let data;
+	const { data } = $props();
 
-	$: currentTopic = $page.url.searchParams.get("topic");
+	let currentTopic = $derived($page.url.searchParams.get("topic"));
 </script>
 
 <main>
@@ -15,7 +15,7 @@
 			<h3>Browse Topics</h3>
 			<hr />
 
-			<ul class="capitalize *:text-sm *:[li>a]">
+			<ul class="capitalize *:text-sm grid gap-2 mt-3">
 				<li><a href="/rooms">All</a></li>
 				{#each data.topics as topic (topic.id)}
 					<li><a href="?topic={topic.name}">{topic.name}</a></li>
