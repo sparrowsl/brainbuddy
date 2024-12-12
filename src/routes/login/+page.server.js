@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 /** @type {import('./$types').PageServerLoad} */
 export function load({ locals }) {
 	if (locals.user) {
-		redirect(307, "/rooms");
+		redirect(307, "/");
 	}
 }
 
@@ -41,6 +41,6 @@ export const actions = {
 			maxAge: 24 * 24 * 60 * 7,
 		});
 
-		redirect(307, "/rooms");
+		redirect(307, "/");
 	},
 };

@@ -13,7 +13,6 @@
 
 	<ul class="flex gap-5 *:text-sm">
 		<li><a href="/">Home</a></li>
-		<li><a href="/rooms">Rooms</a></li>
 		{#if !$page.data?.user}
 			<li><a href="/login">Login</a></li>
 			<li><a href="/register">Register</a></li>
