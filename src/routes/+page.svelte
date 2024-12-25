@@ -8,7 +8,7 @@
 <main>
 	<h1 class="text-accent">Rooms</h1>
 
-	<div class="grid gap-5 grid-cols-[max-content_1fr]">
+	<div class="grid gap-5 grid-cols-[max-content_1fr_max-content]">
 		<aside class="px-2">
 			<h3>Browse Topics</h3>
 			<hr />
@@ -56,5 +56,17 @@
 				{/each}
 			{/await}
 		</section>
+
+		<aside class="px-2">
+			<h3>Browse Topics</h3>
+			<hr />
+
+			<ul class="capitalize *:text-sm grid gap-2 mt-3">
+				<li><a href="/">All</a></li>
+				{#each data.topics as topic (topic.id)}
+					<li><a href="?topic={topic.name}">{topic.name}</a></li>
+				{/each}
+			</ul>
+		</aside>
 	</div>
 </main>

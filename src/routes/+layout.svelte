@@ -6,10 +6,14 @@
 	const { children } = $props();
 </script>
 
-<nav class="flex items-center justify-between py-5 container mx-auto">
+<nav class="flex items-center justify-between py-5 max-w-6xl mx-auto">
 	<a href="/" class="block text-lg font-semibold font-ptsans text-purple">
 		BrainBuddy
 	</a>
+
+	<form action="" method="post" use:enhance>
+		<input type="search" name="topic" class="text-sm rounded-sm" />
+	</form>
 
 	<ul class="flex gap-5 *:text-sm">
 		<li><a href="/">Home</a></li>
@@ -29,6 +33,6 @@
 	</ul>
 </nav>
 
-<main class="container mx-auto">
+<main class="max-w-6xl mx-auto">
 	{@render children?.()}
 </main>
